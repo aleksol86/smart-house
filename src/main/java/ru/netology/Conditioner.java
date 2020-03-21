@@ -1,58 +1,55 @@
 package ru.netology;
 
-public class Conditioner {
-    private String name;
+class Condition {
     private int maxTemperature;
     private int minTemperature;
     private int currentTemperature;
-    private boolean on;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getMaxTemperature() {
-        return maxTemperature;
-    }
-
-    public void setMaxTemperature(int maxTemperature) {
-        this.maxTemperature = maxTemperature;
-    }
-
-    public int getMinTemperature() {
-        return minTemperature;
-    }
-
-    public void setMinTemperature(int minTemperature) {
-        this.minTemperature = minTemperature;
-    }
+    private int increaseCurrentTemperature;
+    private int decreaseCurrentTemperature;
 
     public int getCurrentTemperature() {
         return currentTemperature;
     }
 
     public void setCurrentTemperature(int currentTemperature) {
-        if (currentTemperature > maxTemperature) {
-            return;
-        }
-        if (currentTemperature < minTemperature) {
-            return;
-        }
-        // здесь уверены, что все проверки прошли
         this.currentTemperature = currentTemperature;
     }
 
-    public boolean isOn() {
-        return on;
+    public int getIncreaseCurrentTemperature() {
+        return increaseCurrentTemperature;
     }
 
-    public void setOn(boolean on) {
-        this.on = on;
+    public void setIncreaseCurrentTemperature(int increaseCurrentTemperature) {
+        if (increaseCurrentTemperature < currentTemperature) {
+            return;
+        }
+        if (increaseCurrentTemperature > maxTemperature) {
+            return;
+        }
+        currentTemperature += 1;
+        this.increaseCurrentTemperature = currentTemperature;
+    }
+
+    public int getDecreaseCurrentTemperature() {
+        return decreaseCurrentTemperature;
+    }
+
+    public void setDecreaseCurrentTemperature(int decreaseCurrentTemperature) {
+        if (decreaseCurrentTemperature > currentTemperature) {
+            return;
+        }
+        if (decreaseCurrentTemperature < minTemperature) {
+            return;
+        }
+        currentTemperature -= 1;
+        this.decreaseCurrentTemperature = currentTemperature;
+    }
+
+    public void setMaxTemperature(int maxTemperature) {
+        this.maxTemperature = maxTemperature;
+    }
+
+    public void setMinTemperature(int minTemperature) {
+        this.minTemperature = minTemperature;
     }
 }
-
-

@@ -11,7 +11,7 @@ class RadioTest {
         Radio radio = new Radio();
         radio.setMaxStation(9);
         radio.setMinStation(0);
-        radio.setNumberCurrentStation(6);
+        radio.setNumberCurrentStation(0);
         radio.setNext(true);
         radio.setPrev(false);
         assertEquals(true, radio.isNext(true));
@@ -26,7 +26,7 @@ class RadioTest {
         Radio radio = new Radio();
         radio.setMaxStation(9);
         radio.setMinStation(0);
-        radio.setNumberCurrentStation(0);
+        radio.setNumberCurrentStation(1);
         radio.setNext(false);
         radio.setPrev(true);
         assertEquals(false, radio.isNext(false));
@@ -41,7 +41,7 @@ class RadioTest {
         Radio radio = new Radio();
         radio.setMaxVolume(10);
         radio.setMinVolume(0);
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(12);
         radio.setIncrease(true);
         radio.setDecrease(false);
         assertEquals(true, radio.isIncrease(true));
@@ -56,7 +56,7 @@ class RadioTest {
         Radio radio = new Radio();
         radio.setMaxVolume(10);
         radio.setMinVolume(0);
-        radio.setCurrentVolume(0);
+        radio.setCurrentVolume(5);
         radio.setIncrease(false);
         radio.setDecrease(true);
         assertEquals(false, radio.isIncrease(false));

@@ -11,10 +11,6 @@ public class Radio {
     public Radio() {
     }
 
-    public Radio(int maxChannel) {
-        this.maxChannel = maxChannel;
-    }
-
     public Radio(int currentChannel, int maxChannel) {
         this.currentChannel = currentChannel;
         this.maxChannel = maxChannel;

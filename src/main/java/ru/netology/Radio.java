@@ -1,160 +1,76 @@
 package ru.netology;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Radio {
-    private int maxStation = 10;
-    private int minStation = 0;
-    private int numberCurrentStation;
-    private int nextStation;
-    private int prevStation;
-    boolean next;
-    boolean prev;
-
-    public Radio(int maxStation, int numberCurrentStation, boolean next, boolean prev) {
-        this.maxStation = maxStation;
-        this.numberCurrentStation = numberCurrentStation;
-        this.next = next;
-        this.prev = prev;
-    }
-
     private int maxVolume = 100;
     private int minVolume = 0;
+    private int maxChannel = 9;
+    private int minChannel = 0;
     private int currentVolume;
-    private int increaseCurrentVolume;
-    private int decreaseCurrentVolume;
-    boolean increase;
-    boolean decrease;
+    private int currentChannel;
 
-    public Radio(int currentVolume, boolean increase, boolean decrease) {
-        this.currentVolume = currentVolume;
-        this.increase = increase;
-        this.decrease = decrease;
+    public Radio(int currentChannel, int maxChannel) {
+        this.currentChannel = currentChannel;
+        this.maxChannel = maxChannel;
     }
 
-    public boolean isNext(boolean b) {
-        return next;
-    }
-
-    public void setNext(boolean next) {
-        this.next = next;
-    }
-
-    public boolean isPrev(boolean b) {
-        return prev;
-    }
-
-    public void setPrev(boolean prev) {
-        this.prev = prev;
-    }
-
-    public void setMaxStation(int maxStation) {
-        this.maxStation = maxStation;
-    }
-
-    public void setMinStation(int minStation) {
-        this.minStation = minStation;
-    }
-
-    public int getNumberCurrentStation() {
-        return numberCurrentStation;
-    }
-
-    public void setNumberCurrentStation(int numberCurrentStation) {
-        this.numberCurrentStation = numberCurrentStation;
-    }
-
-    public int getNextStation() {
-        return nextStation;
-    }
-
-    public void setNextStation(int nextStation) {
-        if (isPrev(true)) {
+    public void increaseVolume() {
+        if (currentVolume == maxVolume) {
             return;
         }
-        numberCurrentStation += 1;
-        if (numberCurrentStation > maxStation) {
-            numberCurrentStation = 0;
-        }
-        this.nextStation = numberCurrentStation;
+        currentVolume++;
     }
 
-    public int getPrevStation() {
-        return prevStation;
-    }
-
-    public void setPrevStation(int prevStation) {
-        if (isNext(true)) {
+    public void decreaseVolume() {
+        if (currentVolume == minVolume) {
             return;
         }
-        numberCurrentStation -= 1;
-        if (numberCurrentStation < minStation) {
-            numberCurrentStation = maxStation;
+        currentVolume--;
+    }
+
+    public void increaseChannel() {
+        if (currentChannel == maxChannel) {
+            this.currentChannel = minChannel;
+            return;
         }
-        this.prevStation = numberCurrentStation;
+        currentChannel++;
     }
 
-    public boolean isIncrease(boolean b) {
-        return increase;
-    }
-
-    public void setIncrease(boolean increase) {
-        this.increase = increase;
-    }
-
-    public boolean isDecrease(boolean b) {
-        return decrease;
-    }
-
-    public void setDecrease(boolean decrease) {
-        this.decrease = decrease;
-    }
-
-    public void setMaxVolume(int maxVolume) {
-        this.maxVolume = maxVolume;
-    }
-
-    public void setMinVolume(int minVolume) {
-        this.minVolume = minVolume;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
+    public void decreaseChannel() {
+        if (currentChannel == minChannel) {
+            this.currentChannel = maxChannel;
+            return;
+        }
+        currentChannel--;
     }
 
     public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            this.currentVolume = maxVolume;
+            return;
+        }
+        if (currentVolume < minVolume) {
+            this.currentVolume = minVolume;
+            return;
+        }
         this.currentVolume = currentVolume;
     }
 
-    public int getIncreaseCurrentVolume() {
-        return increaseCurrentVolume;
-    }
-
-    public void setIncreaseCurrentVolume(int increaseCurrentVolume) {
-        if (isDecrease(true)) {
+    public void setCurrentChannel(int currentChannel) {
+        if (currentChannel > maxChannel) {
+            this.currentChannel = maxChannel;
             return;
         }
-        currentVolume += 1;
-        if (currentVolume > maxVolume) {
-            currentVolume = maxVolume;
-        }
-        this.increaseCurrentVolume = currentVolume;
-    }
-
-    public int getDecreaseCurrentVolume() {
-        return decreaseCurrentVolume;
-    }
-
-    public void setDecreaseCurrentVolume(int decreaseCurrentVolume) {
-        if (isIncrease(true)) {
+        if (currentChannel < minChannel) {
+            this.currentChannel = minChannel;
             return;
         }
-        currentVolume -= 1;
-        if (currentVolume < minVolume) {
-            currentVolume = minVolume;
-        }
-        this.decreaseCurrentVolume = currentVolume;
+        this.currentChannel = currentChannel;
     }
 }

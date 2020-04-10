@@ -59,14 +59,6 @@ public class Radio {
         currentChannel--;
     }
 
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
     public int getCurrentVolume() {
         return currentVolume;
     }
@@ -83,13 +75,6 @@ public class Radio {
         this.currentVolume = currentVolume;
     }
 
-    public int getMaxChannel() {
-        return maxChannel;
-    }
-
-    public int getMinChannel() {
-        return minChannel;
-    }
 
     public int getCurrentChannel() {
         return currentChannel;
